@@ -1,31 +1,37 @@
 class Movie {
   final int id;
-  final String posterMini;
-  final String poster;
+  final String? posterMini;
+  final String? poster;
   final String title;
-  final int note;
-  final int date;
-  final String summary;
+  final double? note;
+  final String? date;
+  final String? summary;
 
   const Movie({
     required this.id,
-    required this.posterMini,
-    required this.poster,
+    this.posterMini,
+    this.poster,
     required this.title,
-    required this.note,
-    required this.date,
-    required this.summary,
+    this.note,
+    this.date,
+    this.summary,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
       id: json['id'],
-      posterMini: "https://image.tmdb.org/t/p/w94_and_h141_bestv2" +
-          json['poster_path'],
-      poster: "https://image.tmdb.org/t/p/w300_and_h450_bestv2" +
-          json['poster_path'],
+      posterMini: json['poster_path'] != null
+          ? "https://image.tmdb.org/t/p/w94_and_h141_bestv2" +
+              json['poster_path']
+          : null,
+      poster: json['poster_path'] != null
+          ? "https://image.tmdb.org/t/p/w300_and_h450_bestv2" +
+              json['poster_path']
+          : null,
       title: json['title'],
-      note: json['vote_average'],
+      note: json['vote_average'] is double
+          ? json['vote_average']
+          : json['vote_average'].toDouble(),
       date: json['release_date'],
       summary: json['overview'],
     );
