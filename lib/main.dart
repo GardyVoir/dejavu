@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'classes/Album';
+import 'api/apiTMDB.dart';
 
 void main() {
   runApp(const MyApp());
@@ -121,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // When the user presses the button, show an alert dialog containing
             // the text that the user has entered into the text field.
             onPressed: () async {
-              var uri = "https://api.themoviedb.org/3/search/movie?query="+ myController.text +"&api_key=151dfa1b4c6a83a02970c0c6612615b3";
+              var uri = apiTMDB().getMovieWithSearch(myController.text);
               var result = await http.get(Uri.parse(uri));
 
               debugPrint(result.body);
