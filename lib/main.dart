@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Déjà Vu',
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const MyHomePage(title: 'Home Page'),
+      home: const MyHomePage(title: 'Avez-vous Déjà Vu ...'),
     );
   }
 }
@@ -75,8 +75,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           children: [
-            TextField(
-              controller: myController,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(hintText: 'Enter movie name'),
+                onSubmitted: (value) {
+                  getMoviesFromSearch(value);
+                },
+                controller: myController,
+              ),
             ),
             Expanded(
               child: ListView(

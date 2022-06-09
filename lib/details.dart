@@ -46,17 +46,24 @@ class DetailsState extends State<Details> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Center(
-                            child: Container(
-                              width: 300,
-                              height: 450,
-                              child: _poster(movie.data!.poster),
-                            ),
+                            child: movie.data!.poster == null
+                                ? Container()
+                                : Container(
+                                    width: 300,
+                                    height: 450,
+                                    child: _poster(movie.data!.poster),
+                                  ),
                           ),
                           Center(
                               child: Text(movie.data!.title,
                                   style:
                                       Theme.of(context).textTheme.headline4)),
-                          Text("(${movie.data!.date?.substring(0, 4) ?? "?"})"),
+                          movie.data!.date == null
+                              ? Container()
+                              : movie.data!.date!.isEmpty
+                                  ? Container()
+                                  : Text(
+                                      "(${movie.data!.date!.substring(0, 4)})"),
                           //Text(movie.data!.note.toString()),
                           Text(movie.data!.summary ?? "Pas de synopsis")
                         ],
