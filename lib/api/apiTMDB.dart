@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 class apiTMDB {
   static const BASE_URL = "https://api.themoviedb.org/3/",
       IMAGE_URL = "http://image.tmdb.org/t/p/",
-      API_KEY = "?api_key=151dfa1b4c6a83a02970c0c6612615b3";
+      API_KEY = "?api_key=147559df849452102f2d124c5bcd04d5";
 
   static getMovieWithSearch(String query) async {
     return await http.get(

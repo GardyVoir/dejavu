@@ -49,13 +49,7 @@ class DetailsState extends State<Details> {
                             child: Container(
                               width: 300,
                               height: 450,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                image: DecorationImage(
-                                    image:
-                                        NetworkImage(movie.data!.poster ?? ""),
-                                    fit: BoxFit.fill),
-                              ),
+                              child: _poster(movie.data!.poster),
                             ),
                           ),
                           Center(
@@ -106,4 +100,13 @@ class DetailsState extends State<Details> {
     );
   }
 }
-//   Navigator.push(context, MaterialPageRoute(builder: (context) => Details(id: XXXX)));
+
+Widget _poster(String? url) {
+  if (url == null || url.isEmpty) {
+    return Container(
+      height: 0,
+      width: 0,
+    );
+  }
+  return Image.network(url);
+}
